@@ -127,6 +127,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="Commoninclude.h" />
     <ClInclude Include="Engine_windows.h" />
     <ClInclude Include="framework.h" />
     <ClInclude Include="Resource.h" />

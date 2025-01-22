@@ -17,17 +17,16 @@ BOOL                InitInstance(HINSTANCE, int);
 LRESULT CALLBACK    WndProc(HWND, UINT, WPARAM, LPARAM);
 INT_PTR CALLBACK    About(HWND, UINT, WPARAM, LPARAM);
 
-int APIENTRY wWinMain(_In_ HINSTANCE hInstance,
-                     _In_opt_ HINSTANCE hPrevInstance,
-                     _In_ LPWSTR    lpCmdLine,
-                     _In_ int       nCmdShow)
+int APIENTRY wWinMain(_In_ HINSTANCE hInstance, //프로그램의 인스턴스 핸들 (내가 만든 윈도우에 접근할 수 있게)
+                     _In_opt_ HINSTANCE hPrevInstance, //바로 앞에 실행된 현재 프로그램의 인스턴스 핸들, 없을경우 NULL (지금은 신경x)
+                     _In_ LPWSTR    lpCmdLine, //명령행으로 입력된 프로그램 인수
+                     _In_ int       nCmdShow) //프로그램이 실행될 형태이며, 보통 모양정보 등이 전달됨.
 {
     UNREFERENCED_PARAMETER(hPrevInstance);
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     // TODO: 여기에 코드를 입력합니다.
-    //
-    // 
+
     // 전역 문자열을 초기화합니다.
     LoadStringW(hInstance, IDS_APP_TITLE, szTitle, MAX_LOADSTRING);
     LoadStringW(hInstance, IDC_ENGINEWINDOWS, szWindowClass, MAX_LOADSTRING);
@@ -99,7 +98,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, CW_USEDEFAULT, 0, nullptr, nullptr, hInstance, nullptr);
+      CW_USEDEFAULT, 0, 1600, 900, nullptr, nullptr, hInstance, nullptr);
 
    if (!hWnd)
    {
@@ -154,6 +153,13 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
     case WM_DESTROY:
         PostQuitMessage(0);
         break;
+
+    /*case WM_MOVE:
+    {
+        int a = 0;
+    }
+        break;*/ //Test Soen 홈페이지 참조
+
     default:
         return DefWindowProc(hWnd, message, wParam, lParam);
     }
