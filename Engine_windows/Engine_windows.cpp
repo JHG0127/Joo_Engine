@@ -42,15 +42,41 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, //프로그램의 인스턴스 �
 
     MSG msg;
 
+    //GetMessage함수는 프로세스에서 발생한 메세지를 메세지 큐에서 가져오는 함수
+    //메세지큐에 아무것도 없다면 아무 메세지도 가져오지 않게 됨.
+
+    //Peekmessage : 메세지큐에 메세지 유무에 상관없이 함수가 리턴된다. 
+    //             리턴값이 true인 경우 메세지가 있고 false인 경우는 메세지가 없다.
+
+    while (true)
+    {
+        if (PeekMessage(&msg, nullptr, 0, 0, PM_REMOVE))
+        {
+            if (msg.message == WM_QUIT)
+                break;
+
+            if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
+            {
+                TranslateMessage(&msg);
+                DispatchMessage(&msg);
+            }
+        }
+        else
+        {
+            //메세지가 없을경우 여기서 처리
+            //게임 로직이 들어간다.
+        }
+    }
+
     // 기본 메시지 루프입니다:
-    while (GetMessage(&msg, nullptr, 0, 0))
+   /* while (GetMessage(&msg, nullptr, 0, 0))
     {
         if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
         {
             TranslateMessage(&msg);
             DispatchMessage(&msg);
         }
-    }
+    }*/
 
     return (int) msg.wParam;
 }
@@ -147,18 +173,35 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
 
-            HBRUSH brush = CreateSolidBrush(RGB(0, 0, 255));
-            HBEUSH oldbrush = (HBRUSH)SelectObject(hdc, brush);
-
+            HBRUSH bluebrush = CreateSolidBrush(RGB(0, 0, 255)); //파랑 브러쉬 생성
+            HBRUSH oldbrush = (HBRUSH)SelectObject(hdc, bluebrush); //파랑브러쉬 DC에 선택 그리고 흰색 브러쉬 반환
+            
             Rectangle(hdc, 100, 100, 200, 200);
 
-            (HBRUSH)SelectObject(hdc, oldbrush);
+            (HBRUSH)SelectObject(hdc, oldbrush); //다시 흰색 브러쉬로 선택
+            DeleteObject(bluebrush); //파랑브러쉬 삭제
+
+            HPEN redPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
+            HPEN oldpen = (HPEN)SelectObject(hdc, redPen);
 
             Ellipse(hdc, 200, 200, 300, 300);
+
+            (HPEN)SelectObject(hdc, oldpen);
+            DeleteObject(redPen);
+
+            HBRUSH graybrush = (HBRUSH)GetStockObject(GRAY_BRUSH);
+            oldbrush = (HBRUSH)SelectObject(hdc, graybrush);
+
+            Rectangle(hdc, 400, 400, 500, 500);
+
+            SelectObject(hdc, oldpen);
+
             //DC란 화면에 출력에 필요한 모든 정보를 가지는 데이터 구조
             // GDI모듈에 의해서 관리된다.
             // 어떤 폰트를 사용? 어떤 선의 굵기?
             // 화면 출력에 필요한 모든 경우는 win api에서는 dc를 통해서 작업 진행
+            // 기본으로 자주 사용되는 GDI오브젝트를 미리 DC안에 만들어두었는데
+            // 그 오브젝트들을 스톡오브젝트라고 한다.
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
             EndPaint(hWnd, &ps);
         }
