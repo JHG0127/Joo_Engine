@@ -98,7 +98,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
-      CW_USEDEFAULT, 0, 1600, 900, nullptr, nullptr, hInstance, nullptr);
+      CW_USEDEFAULT, 0, 1600, 900, nullptr, nullptr, hInstance, nullptr); //윈도우 여러개 생성 가능
 
    if (!hWnd)
    {
@@ -146,6 +146,19 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
+
+            HBRUSH brush = CreateSolidBrush(RGB(0, 0, 255));
+            HBEUSH oldbrush = (HBRUSH)SelectObject(hdc, brush);
+
+            Rectangle(hdc, 100, 100, 200, 200);
+
+            (HBRUSH)SelectObject(hdc, oldbrush);
+
+            Ellipse(hdc, 200, 200, 300, 300);
+            //DC란 화면에 출력에 필요한 모든 정보를 가지는 데이터 구조
+            // GDI모듈에 의해서 관리된다.
+            // 어떤 폰트를 사용? 어떤 선의 굵기?
+            // 화면 출력에 필요한 모든 경우는 win api에서는 dc를 통해서 작업 진행
             // TODO: 여기에 hdc를 사용하는 그리기 코드를 추가합니다...
             EndPaint(hWnd, &ps);
         }
