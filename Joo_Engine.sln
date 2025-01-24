@@ -7,6 +7,8 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Engine_windows", "Engine_wi
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JooEngine_windows", "JooEngine_windows\JooEngine_windows.vcxproj", "{6306630B-3991-4A2B-9909-3798C3845E9D}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JooEngine_source", "JooEngine_source\JooEngine_source.vcxitems", "{04865A2F-DB7B-46DC-9F76-F367946EE129}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -34,5 +36,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SharedMSBuildProjectFiles) = preSolution
+		JooEngine_source\JooEngine_source.vcxitems*{04865a2f-db7b-46dc-9f76-f367946ee129}*SharedItemsImports = 9
+		JooEngine_source\JooEngine_source.vcxitems*{6306630b-3991-4a2b-9909-3798c3845e9d}*SharedItemsImports = 4
 	EndGlobalSection
 EndGlobal
