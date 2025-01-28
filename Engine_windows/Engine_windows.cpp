@@ -5,8 +5,7 @@
 #include "Engine_windows.h"
 #include "..\\JooEngine_source\\JApplication.h"
 
-
-Application app;
+joo::Application application;
 
 #define MAX_LOADSTRING 100
 
@@ -30,7 +29,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, //프로그램의 인스턴스 �
     UNREFERENCED_PARAMETER(lpCmdLine);
 
     //깃헙 테스트
-    app.test();
+    //app.test();
     // TODO: 여기에 코드를 입력합니다. test
     ///
     //
@@ -73,6 +72,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, //프로그램의 인스턴스 �
         }
         else
         {
+            application.Run();
             //메세지가 없을경우 여기서 처리
             //게임 로직이 들어간다.
         }
@@ -136,6 +136,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, 1600, 900, nullptr, nullptr, hInstance, nullptr); //윈도우 여러개 생성 가능
 
+   application.Initialize(hWnd);
+
    if (!hWnd)
    {
       return FALSE;
@@ -182,29 +184,6 @@ LRESULT CALLBACK WndProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lParam)
         {
             PAINTSTRUCT ps;
             HDC hdc = BeginPaint(hWnd, &ps);
-
-            HBRUSH bluebrush = CreateSolidBrush(RGB(0, 0, 255)); //파랑 브러쉬 생성
-            HBRUSH oldbrush = (HBRUSH)SelectObject(hdc, bluebrush); //파랑브러쉬 DC에 선택 그리고 흰색 브러쉬 반환
-            
-            Rectangle(hdc, 100, 100, 200, 200);
-
-            (HBRUSH)SelectObject(hdc, oldbrush); //다시 흰색 브러쉬로 선택
-            DeleteObject(bluebrush); //파랑브러쉬 삭제
-
-            HPEN redPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
-            HPEN oldpen = (HPEN)SelectObject(hdc, redPen);
-
-            Ellipse(hdc, 200, 200, 300, 300);
-
-            (HPEN)SelectObject(hdc, oldpen);
-            DeleteObject(redPen);
-
-            HBRUSH graybrush = (HBRUSH)GetStockObject(GRAY_BRUSH);
-            oldbrush = (HBRUSH)SelectObject(hdc, graybrush);
-
-            Rectangle(hdc, 400, 400, 500, 500);
-
-            SelectObject(hdc, oldpen);
 
             //DC란 화면에 출력에 필요한 모든 정보를 가지는 데이터 구조
             // GDI모듈에 의해서 관리된다.

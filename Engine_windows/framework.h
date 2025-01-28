@@ -15,7 +15,7 @@
 #include <tchar.h>
 
 //테스트
-#include "Commoninclude.h"
+//#include "Commoninclude.h"
 
 //정적 라이브러리(모든 프로그램이 참조)
 //장점: 시스템 환경이 변해도 어플리케이션에 아무런 영향이 없다.

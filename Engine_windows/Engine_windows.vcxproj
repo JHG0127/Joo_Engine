@@ -143,6 +143,11 @@
     <Image Include="Engine_windows.ico" />
     <Image Include="small.ico" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\JooEngine_windows\JooEngine_windows.vcxproj">
+      <Project>{6306630b-3991-4a2b-9909-3798c3845e9d}</Project>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
