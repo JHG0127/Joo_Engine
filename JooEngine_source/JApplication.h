@@ -1,5 +1,6 @@
 #pragma once
 #include "Commoninclude.h"
+#include "JGameObject.h"
 
 namespace joo
 {
@@ -19,9 +20,14 @@ namespace joo
 		HWND mHwnd;
 		HDC mHdc;
 
-		float mSpeed;
-		float mX;
-		float mY;
+		//float mSpeed;
+
+		//플레이어
+		/*float mX;
+		float mY;*/
+		
+		GameObject mPlayer;
+		
 	};
 }
 
