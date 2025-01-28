@@ -19,7 +19,8 @@ namespace joo
 	{
 		mHwnd = hwnd;
 		mHdc = GetDC(hwnd);
-		mPlayer.SetPosition(0, 0);
+		/*mPlayer.SetPosition(0, 0);
+		mPlayer2.SetPosition(0, 0);*/
 	}
 
 	void Application::Run()
@@ -32,6 +33,7 @@ namespace joo
 	void Application::Update()
 	{
 		mPlayer.Update();
+		mPlayer2.Update();
 	}
 
 	void Application::LateUpdate()
@@ -42,5 +44,6 @@ namespace joo
 	void Application::Render()
 	{
 		mPlayer.Render(mHdc);
+		mPlayer2.Render(mHdc);
 	}
 }

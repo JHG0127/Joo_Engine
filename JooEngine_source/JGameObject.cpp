@@ -3,8 +3,8 @@
 namespace joo
 {
 	GameObject::GameObject()
-		:mY(0),
-		mX(0)
+		:mX(0),
+		mY(0)
 	{
 
 	}

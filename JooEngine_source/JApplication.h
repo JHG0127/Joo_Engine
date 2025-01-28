@@ -1,6 +1,7 @@
 #pragma once
 #include "Commoninclude.h"
 #include "JGameObject.h"
+#include "JGameObject2.h"
 
 namespace joo
 {
@@ -27,6 +28,7 @@ namespace joo
 		float mY;*/
 		
 		GameObject mPlayer;
+		GameObject2 mPlayer2;
 		
 	};
 }
