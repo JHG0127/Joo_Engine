@@ -1,4 +1,5 @@
 #include "JGameObject.h"
+#include "Jinput.h"
 
 namespace joo
 {
@@ -16,22 +17,22 @@ namespace joo
 
 	void GameObject::Update()
 	{
-		if (GetAsyncKeyState(VK_LEFT) & 0x8000)
+		if (input::GetKey(eKeyCode::A))
 		{
 			mX -= 0.01;
 		}
 
-		if (GetAsyncKeyState(VK_RIGHT) & 0x8000)
+		if (input::GetKey(eKeyCode::D))
 		{
 			mX += 0.01;
 		}
 
-		if (GetAsyncKeyState(VK_UP) & 0x8000)
+		if (input::GetKey(eKeyCode::W))
 		{
 			mY -= 0.01;
 		}
 
-		if (GetAsyncKeyState(VK_DOWN) & 0x8000)
+		if (input::GetKey(eKeyCode::S))
 		{
 			mY += 0.01;
 		}

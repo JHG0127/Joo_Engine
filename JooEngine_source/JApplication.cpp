@@ -1,4 +1,5 @@
 #include "JApplication.h"
+#include "Jinput.h"
 
 
 namespace joo
@@ -21,6 +22,8 @@ namespace joo
 		mHdc = GetDC(hwnd);
 		/*mPlayer.SetPosition(0, 0);
 		mPlayer2.SetPosition(0, 0);*/
+
+		input::Initialize();
 	}
 
 	void Application::Run()
@@ -32,6 +35,7 @@ namespace joo
 
 	void Application::Update()
 	{
+		input::Update();
 		mPlayer.Update();
 		mPlayer2.Update();
 	}
