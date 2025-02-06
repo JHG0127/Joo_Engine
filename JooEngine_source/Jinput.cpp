@@ -1,8 +1,9 @@
 #include "Jinput.h"
+#include <algorithm>
 
 namespace joo
 {
-	std::vector<input::Key> input::mKeys = {};
+	std::vector<input::Key> input::Keys = {};
 
 	int ASCII[(UINT)eKeyCode::End] =
 	{
@@ -15,6 +16,16 @@ namespace joo
 
 	void input::Initialize()
 	{
+		createKeys();
+	}
+
+	void input::Update()
+	{
+		updateKeys();
+	}
+
+	void input::createKeys()
+	{
 		for (size_t i = 0; i < (UINT)eKeyCode::End; i++)
 		{
 			Key key = {};
@@ -22,33 +33,53 @@ namespace joo
 			key.state = eKeyState::None;
 			key.KeyCode = (eKeyCode)i;
 
-			mKeys.push_back(key);
+			Keys.push_back(key);
 		}
-
 	}
 
-	void input::Update()
+	void input::updateKeys()
 	{
-		for (size_t i = 0; i < mKeys.size(); i++)
-		{
-			if (GetAsyncKeyState(ASCII[i]) & 0x8000) {
-				if (mKeys[i].bPressed == true)
-					mKeys[i].state = eKeyState::Pressed;
-				else
-					mKeys[i].state = eKeyState::Down;
-
-				mKeys[i].bPressed = true;
-			}
-			else
+		std::for_each(Keys.begin(), Keys.end(),
+			[](Key& key) -> void
 			{
-				if (mKeys[i].bPressed == true)
-					mKeys[i].state = eKeyState::Up;
-				else
-					mKeys[i].state = eKeyState::None;
+				updateKey(key);
+			});
+	}
 
-				mKeys[i].bPressed = false;
-
-			}
+	void input::updateKey(input::Key& key)
+	{
+		if (isKeyDown(key.KeyCode))
+		{
+			updateKeyDown(key);
 		}
+		else
+		{
+			updateKeyUp(key);
+		}
+	}
+
+	bool input::isKeyDown(eKeyCode code)
+	{
+		return GetAsyncKeyState(ASCII[(UINT)code]) & 0x8000;
+	}
+
+	void input::updateKeyDown(input::Key& key)
+	{
+		if (key.bPressed == true)
+			key.state = eKeyState::Pressed;
+		else
+			key.state = eKeyState::Down;
+
+		key.bPressed = true;
+	}
+
+	void input::updateKeyUp(input::Key& key)
+	{
+		if (key.bPressed == true)
+			key.state = eKeyState::Up;
+		else
+			key.state = eKeyState::None;
+
+		key.bPressed = false;
 	}
 }

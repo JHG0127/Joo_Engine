@@ -1,5 +1,6 @@
 #include "JApplication.h"
 #include "Jinput.h"
+#include "JTime.h"
 
 
 namespace joo
@@ -24,6 +25,7 @@ namespace joo
 		mPlayer2.SetPosition(0, 0);*/
 
 		input::Initialize();
+		Time::Initialize();
 	}
 
 	void Application::Run()
@@ -36,6 +38,7 @@ namespace joo
 	void Application::Update()
 	{
 		input::Update();
+		Time::Update();
 		mPlayer.Update();
 		mPlayer2.Update();
 	}
@@ -47,6 +50,7 @@ namespace joo
 
 	void Application::Render()
 	{
+		Time::Render(mHdc);
 		mPlayer.Render(mHdc);
 		mPlayer2.Render(mHdc);
 	}

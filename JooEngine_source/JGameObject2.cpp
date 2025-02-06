@@ -1,5 +1,6 @@
 #include "JGameObject2.h"
 #include "Jinput.h"
+#include "JTime.h"
 
 namespace joo {
 	GameObject2::GameObject2()
@@ -16,24 +17,25 @@ namespace joo {
 
 	void GameObject2::Update()
 	{
+		const int speed = 50.0f;
 		if (input::GetKey(eKeyCode::Left) || input::GetKey(eKeyCode::LB))
 		{
-			mX -= 0.01;
+			mX -= speed * Time::DeltaTime();
 		}
 
 		if (input::GetKey(eKeyCode::Right) || input::GetKey(eKeyCode::RB))
 		{
-			mX += 0.01;
+			mX += speed * Time::DeltaTime();
 		}
 
 		if (input::GetKey(eKeyCode::Up))
 		{
-			mY -= 0.01;
+			mY -= speed * Time::DeltaTime();
 		}
 
 		if (input::GetKey(eKeyCode::Down))
 		{
-			mY += 0.01;
+			mY += speed * Time::DeltaTime();
 		}
 	}
 

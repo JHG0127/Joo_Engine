@@ -19,11 +19,13 @@
     <ClInclude Include="$(MSBuildThisFileDirectory)JGameObject.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)JGameObject2.h" />
     <ClInclude Include="$(MSBuildThisFileDirectory)Jinput.h" />
+    <ClInclude Include="$(MSBuildThisFileDirectory)JTime.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="$(MSBuildThisFileDirectory)JApplication.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)JGameObject.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)JGameObject2.cpp" />
     <ClCompile Include="$(MSBuildThisFileDirectory)Jinput.cpp" />
+    <ClCompile Include="$(MSBuildThisFileDirectory)JTime.cpp" />
   </ItemGroup>
 </Project>
