@@ -11,7 +11,7 @@ namespace joo
 		Application();
 		~Application();
 
-		void Initialize(HWND hwnd);
+		void Initialize(HWND hwnd, UINT width, UINT height);
 		void Run();
 		void Update();
 		void LateUpdate();
@@ -21,6 +21,11 @@ namespace joo
 		HWND mHwnd;
 		HDC mHdc;
 
+		HDC mBackHdc;
+		HBITMAP mBackBitmap;
+
+		UINT mWidth;
+		UINT mHeight;
 		//float mSpeed;
 
 		//플레이어
