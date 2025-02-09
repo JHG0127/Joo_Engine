@@ -129,6 +129,11 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClInclude Include="JLoadScene.h" />
+    <ClInclude Include="JPlayScene.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="JPlayScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

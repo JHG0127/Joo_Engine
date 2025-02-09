@@ -4,6 +4,7 @@
 #include "framework.h"
 #include "Engine_windows.h"
 #include "..\\JooEngine_source\\JApplication.h"
+#include "..\\JooEngine_windows\\JLoadScene.h"
 
 joo::Application application;
 
@@ -140,7 +141,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, width, height, nullptr, nullptr, hInstance, nullptr); //윈도우 여러개 생성 가능
 
-   application.Initialize(hWnd,width,height);
+   application.Initialize(hWnd, width, height);
 
    if (!hWnd)
    {
@@ -149,6 +150,10 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
 
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
+
+   //load Scenes
+   joo::LoadScenes();
+
 
    return TRUE;
 }

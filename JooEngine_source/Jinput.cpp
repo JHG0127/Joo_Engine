@@ -1,5 +1,4 @@
 #include "Jinput.h"
-#include <algorithm>
 
 namespace joo
 {

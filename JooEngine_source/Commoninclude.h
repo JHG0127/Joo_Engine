@@ -2,3 +2,6 @@
 #include <windows.h>
 
 #include <vector>
+#include <algorithm>
+#include <string>
+#include <map>

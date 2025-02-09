@@ -1,7 +1,7 @@
 #pragma once
 #include "Commoninclude.h"
 #include "JGameObject.h"
-#include "JGameObject2.h"
+//#include "JGameObject2.h"
 
 namespace joo
 {
@@ -18,6 +18,13 @@ namespace joo
 		void Render();
 
 	private:
+		void adjustWindowRect(HWND hwnd, UINT width, UINT height);
+		void createBuffer(UINT width, UINT height);
+		void initializeEtc();
+		void clearRenderTarget();
+		void copyRenderTarget(HDC source, HDC dest);
+
+	private:
 		HWND mHwnd;
 		HDC mHdc;
 
@@ -26,15 +33,9 @@ namespace joo
 
 		UINT mWidth;
 		UINT mHeight;
-		//float mSpeed;
 
-		//플레이어
-		/*float mX;
-		float mY;*/
-		
-		GameObject mPlayer;
-		GameObject2 mPlayer2;
-		
+		//std::vector<Scene*> mScene;
+		//std::vector<GameObject*> mGameObjects;
 	};
 }
 

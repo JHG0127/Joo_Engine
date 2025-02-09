@@ -47,13 +47,14 @@ namespace joo
 
 	void GameObject::Render(HDC hdc)
 	{
-		HBRUSH bluebrush = CreateSolidBrush(RGB(0, 0, 255)); //파랑 브러쉬 생성
+		HBRUSH bluebrush = CreateSolidBrush(RGB(rand() % 255, rand() % 255, rand() % 255)); //파랑 브러쉬 생성
 		HBRUSH oldbrush = (HBRUSH)SelectObject(hdc, bluebrush); //파랑브러쉬 DC에 선택 그리고 흰색 브러쉬 반환
 
-		HPEN redPen = CreatePen(PS_SOLID, 2, RGB(255, 0, 0));
-		//HPEN oldpen = (HPEN)SelectObject(mHdc, redPen);
+		HPEN redPen = CreatePen(PS_SOLID, 2, RGB(rand() % 255, rand() % 255, rand() % 255));
+		HPEN oldPen = (HPEN)SelectObject(hdc, redPen);
+		SelectObject(hdc, oldPen);
 
-		Rectangle(hdc, 100 + mX, 100 + mY, 200 + mX, 200 + mY);
+		Ellipse(hdc, mX, mY, 100 + mX, 100 + mY);
 
 		(HBRUSH)SelectObject(hdc, oldbrush); //다시 흰색 브러쉬로 선택
 		DeleteObject(bluebrush); //파랑브러쉬 삭제
