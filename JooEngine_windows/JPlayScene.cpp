@@ -1,5 +1,8 @@
 #include "JPlayScene.h"
 #include "JGameObject.h"
+#include "JPlayer.h"
+#include "JTransform.h"
+#include "JSpriteRenderer.h"
 
 namespace joo
 {
@@ -11,21 +14,56 @@ namespace joo
 	}
 	void PlayScene::Initialize()
 	{
-		for (size_t i = 0; i < 100; i++)
 		{
-			GameObject* obj = new GameObject();
-			obj->SetPosition(rand() % 1280, rand() % 720);
-			AddGameObject(obj);
+			Player* p1 = new Player();
+
+			Transform* tr = p1->AddComponent<Transform>();
+
+			tr->SetPos(800, 450);
+
+			tr->SetName(L"TR");
+
+			SpriteRenderer* sr = p1->AddComponent<SpriteRenderer>();
+
+			sr->SetName(L"SR");
+
+			AddGameObject(p1);
 		}
 
+		{
+			Player* pl = new Player();
+			Transform* tr
+				= pl->AddComponent<Transform>();
+			tr->SetPos(300, 450);
+
+			tr->SetName(L"TR");
+
+			SpriteRenderer* sr
+				= pl->AddComponent<SpriteRenderer>();
+			sr->SetName(L"SR");
+
+			AddGameObject(pl);
+		}
+
+		{
+			Player* pl = new Player();
+			Transform* tr
+				= pl->AddComponent<Transform>();
+			tr->SetPos(100, 650);
+
+			tr->SetName(L"TR");
+
+			SpriteRenderer* sr
+				= pl->AddComponent<SpriteRenderer>();
+			sr->SetName(L"SR");
+
+			AddGameObject(pl);
+		}
+		
 	}
 	void PlayScene::Update()
 	{
 		Scene::Update();
-		//for (GameObject* gameObj : mGameObjects)
-		//{
-		//	gameObj->Update();
-		//}
 	}
 	void PlayScene::LateUpdate()
 	{

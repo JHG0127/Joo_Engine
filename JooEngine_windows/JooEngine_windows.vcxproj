@@ -130,9 +130,11 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="JLoadScene.h" />
+    <ClInclude Include="JPlayer.h" />
     <ClInclude Include="JPlayScene.h" />
   </ItemGroup>
   <ItemGroup>
+    <ClCompile Include="JPlayer.cpp" />
     <ClCompile Include="JPlayScene.cpp" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
