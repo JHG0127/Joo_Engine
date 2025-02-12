@@ -15,51 +15,17 @@ namespace joo
 	void PlayScene::Initialize()
 	{
 		{
-			Player* p1 = new Player();
-
-			Transform* tr = p1->AddComponent<Transform>();
-
-			tr->SetPos(800, 450);
-
+			Player* bg = new Player();
+			Transform* tr = bg->AddComponent<Transform>();
+			tr->SetPos(Vector2(0, 0));
 			tr->SetName(L"TR");
 
-			SpriteRenderer* sr = p1->AddComponent<SpriteRenderer>();
-
+			SpriteRenderer* sr = bg->AddComponent<SpriteRenderer>();
 			sr->SetName(L"SR");
+			sr->ImageLoad(L"C:\\Users\\juhyu\\Desktop\\Resources\\CloudOcean.png");
 
-			AddGameObject(p1);
+			AddGameObject(bg);
 		}
-
-		{
-			Player* pl = new Player();
-			Transform* tr
-				= pl->AddComponent<Transform>();
-			tr->SetPos(300, 450);
-
-			tr->SetName(L"TR");
-
-			SpriteRenderer* sr
-				= pl->AddComponent<SpriteRenderer>();
-			sr->SetName(L"SR");
-
-			AddGameObject(pl);
-		}
-
-		{
-			Player* pl = new Player();
-			Transform* tr
-				= pl->AddComponent<Transform>();
-			tr->SetPos(100, 650);
-
-			tr->SetName(L"TR");
-
-			SpriteRenderer* sr
-				= pl->AddComponent<SpriteRenderer>();
-			sr->SetName(L"SR");
-
-			AddGameObject(pl);
-		}
-		
 	}
 	void PlayScene::Update()
 	{

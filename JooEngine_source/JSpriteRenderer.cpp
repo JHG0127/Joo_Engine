@@ -1,41 +1,45 @@
 #include "JSpriteRenderer.h"
 #include "JGameObject.h"
 #include "JTransform.h"
-
-joo::SpriteRenderer::SpriteRenderer()
+namespace joo
 {
+	SpriteRenderer::SpriteRenderer()
+		:mImage(nullptr)
+		,mWidth(0)
+		,mHeight(0)
+	{
+	}
+
+	SpriteRenderer::~SpriteRenderer()
+	{
+	}
+
+	void SpriteRenderer::Initialize()
+	{
+	}
+
+	void SpriteRenderer::Update()
+	{
+	}
+
+	void SpriteRenderer::LateUpdate()
+	{
+	}
+
+	void SpriteRenderer::Render(HDC hdc)
+	{
+		Transform* tr = GetOwner()->GetComponent<Transform>();
+		Vector2 pos = tr->GetPosition();
+
+		Gdiplus::Graphics graphics(hdc);
+		graphics.DrawImage(mImage, Gdiplus::Rect(pos.x, pos.y, mWidth, mHeight));
+	}
+
+	void SpriteRenderer::ImageLoad(const std::wstring& path)
+	{
+		mImage = Gdiplus::Image::FromFile(path.c_str());
+		mWidth = mImage->GetWidth();
+		mHeight = mImage->GetHeight();
+	}
 }
-
-joo::SpriteRenderer::~SpriteRenderer()
-{
-}
-
-void joo::SpriteRenderer::Initialize()
-{
-}
-
-void joo::SpriteRenderer::Update()
-{
-}
-
-void joo::SpriteRenderer::LateUpdate()
-{
-}
-
-void joo::SpriteRenderer::Render(HDC hdc)
-{
-	HBRUSH bluebrush = CreateSolidBrush(RGB(255, 0, 255)); //파랑 브러쉬 생성
-	HBRUSH oldbrush = (HBRUSH)SelectObject(hdc, bluebrush); //파랑브러쉬 DC에 선택 그리고 흰색 브러쉬 반환
-
-	HPEN redPen = CreatePen(PS_SOLID, 2, RGB(rand() % 255, rand() % 255, rand() % 255));
-	HPEN oldPen = (HPEN)SelectObject(hdc, redPen);
-	SelectObject(hdc, oldPen);
-
-	Transform* tr = GetOwner()->GetComponent<Transform>();
-	Rectangle(hdc, tr->GetX(), tr->GetY(), 100 + tr->GetX(), 100 + tr->GetY());
-
-
-	(HBRUSH)SelectObject(hdc, oldbrush); //다시 흰색 브러쉬로 선택
-	DeleteObject(bluebrush); //파랑브러쉬 삭제
-	DeleteObject(redPen);
-}
+	

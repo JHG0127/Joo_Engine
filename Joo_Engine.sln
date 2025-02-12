@@ -9,6 +9,11 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JooEngine_windows", "JooEng
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "JooEngine_source", "JooEngine_source\JooEngine_source.vcxitems", "{04865A2F-DB7B-46DC-9F76-F367946EE129}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Resources", "Resources", "{AD0F4338-CE04-4576-82A3-105C9C343EA7}"
+	ProjectSection(SolutionItems) = preProject
+		..\..\..\..\Desktop\Resources\CloudOcean.png = ..\..\..\..\Desktop\Resources\CloudOcean.png
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64

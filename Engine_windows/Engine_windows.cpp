@@ -7,6 +7,8 @@
 #include "..\\JooEngine_windows\\JLoadScene.h"
 
 joo::Application application;
+ULONG_PTR gpToken;
+Gdiplus::GdiplusStartupInput gpsi;
 
 #define MAX_LOADSTRING 100
 
@@ -79,15 +81,7 @@ int APIENTRY wWinMain(_In_ HINSTANCE hInstance, //프로그램의 인스턴스 �
         }
     }
 
-    // 기본 메시지 루프입니다:
-   /* while (GetMessage(&msg, nullptr, 0, 0))
-    {
-        if (!TranslateAccelerator(msg.hwnd, hAccelTable, &msg))
-        {
-            TranslateMessage(&msg);
-            DispatchMessage(&msg);
-        }
-    }*/
+    Gdiplus::GdiplusShutdown(gpToken);
 
     return (int) msg.wParam;
 }
@@ -135,8 +129,8 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    hInst = hInstance; // 인스턴스 핸들을 전역 변수에 저장합니다.
 
 
-   const UINT width = 1280;
-   const UINT height = 720;
+   const UINT width = 1600;
+   const UINT height = 1200;
 
    HWND hWnd = CreateWindowW(szWindowClass, szTitle, WS_OVERLAPPEDWINDOW,
       CW_USEDEFAULT, 0, width, height, nullptr, nullptr, hInstance, nullptr); //윈도우 여러개 생성 가능
@@ -151,6 +145,7 @@ BOOL InitInstance(HINSTANCE hInstance, int nCmdShow)
    ShowWindow(hWnd, nCmdShow);
    UpdateWindow(hWnd);
 
+   Gdiplus::GdiplusStartup(&gpToken, &gpsi, NULL);
    //load Scenes
    joo::LoadScenes();
 

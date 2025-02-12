@@ -21,5 +21,3 @@ namespace joo
 		std::vector<GameObject*> mGameObjects;
 	};
 }
-
-
